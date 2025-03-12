@@ -1,0 +1,51 @@
+Base de dados utilizador, entender diferenças na 5G
+
+Radio com antenas 5G interligar cm antenas radio verdadeiras, permitiri ligar smartphones
+
+Sim Cards configurados com dados da rede dentro do open 5Gs, testes com parte de radio verdadeira, usar um deles
+
+Quando crimaos user ele liga-se e os pacotes ver se o id esta dentro da base de dados para autenticar
+
+Nem todos temos 5G, emular uma rede de radio,
+
+UERanSim - Simulador Parte Radio 5G
+
+Fazer um tutorial do 5G com o UERanSim
+
+Maquina de Virtual 35G Core - Pedir ao Couto, Fazer Guiao
+
+Aprender a instalar o meu próprio deployment com o open5gs, RanSim, criar a minha VM
+
+Configuração MUITO IMPORTANTE:: o que posso configurar, QoS o que posso configurar coisas difrencas, se o router tier que escolher entre 2 pacotes, escolher com prioridades na rede
+
+Slicin no Open5Gs, 35G COre mais user friendly para aprender
+
+Tentar entender o que é configurável, objetivo é, no cenário industrial, comprar as nossas antenas e montar o 5G dentro da fabrica,
+
+Numa fabrica, pessoal a aceder as bases de dados, sensores das linhas de montagem o valor do sensor avalia o trabalho, detetar defeitos, abrandar os tapetes e conseguir conectar com a rede com prioridades para deisao
+
+Dentro da rede conseguir organizar em prioridades e organizar para quem necessita mais de donwload e upload, prioridade alta media e baixa, dependendo
+
+OAM -> Quando se associa uma conta um utilizador, as fabricas para poupar dinheiro numa rede 5G, temos que organizar as operações quando estes se associam a rede 5G
+
+Portal do 35G Core, adicionar subscritores, apenas da download e upload, mas não apresenta "slices"
+
+Entender quais os parâmetros em que da para escolher no 5G, e desses parâmetros os valores mais importantes no uso de 5G numa fabrica
+
+Use Cases Industriais em 5G, entender e ler
+
+Mandar mail ao professor sobre documentos de 5G na insudstria
+
+Industrias querem privatização do 5G, mas as telecomunicações não tem nada a haver, haver gestão disto pois eles não entendem, como podemos facilitar a vida as empresas para conseguir acalmar e facilitar e requisitos para tratar do 5G sozinhos
+
+Configurar na rede para cenários industriais, organização
+
+
+
+
+
+Referencias:
+
+Operations Adminsitration Management - OAM
+
+Nana Kubernets DevOps - Youtube
