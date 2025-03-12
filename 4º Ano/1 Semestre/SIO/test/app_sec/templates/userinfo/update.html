@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" onsubmit="return validateEmail();">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <label for="username">Username</label>
+    <input name="username" id="username" value="{{ request.form['username'] or user['username'] }}" required>
+
+    <label for="email">Email</label>
+    <input name="email" id="email" value="{{ request.form['email'] or user['email'] }}">
+
+    <label for="old_password">Old Password</label>
+    <input name="old_password" type = "password" id="old_password">
+    <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('old_password')">
+      <label>
+        Show Password
+      </label>
+    </div>
+    
+    <label password="password">New Password</label>
+    <input name="password" type = "password" id="password">
+    <div id="password-strength"></div>
+    <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('password')">
+      <label>
+        Show Password
+      </label>
+    </div>
+
+    <label password="password">Confirm Password</label>
+    <input name="confirm_password" type = "password" id="confirm_password">
+    <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('confirm_password')">
+      <label>
+        Show Password
+      </label>
+    </div>
+ 
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <h2>Delete Account</h2>
+  <form method="post" action="{{ url_for('userinfo.delete') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+      <label for="password">Password</label>
+      <input name="password" type = "password" id="password1" required> 
+      <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('password1')">
+      <label>Show Password</label>
+      </div>
+      <input type="submit" class="danger" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+
+  <script src="../static/scripts.js"></script>
+{% endblock %}

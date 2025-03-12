@@ -1,0 +1,15 @@
+# do flipFlopD.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:50:39 on Oct 17,2023
+# vcom -work work flipFlopD.vho 
+# -- Loading package STANDARD
+# init_dbinfo() DATABASE ERROR: (sqlite3_open C:/Users/benny/Desktop/ECT/4º Ano/1 Semestre/AAD/aula5/arquiteturas/examples/flipFlopD/simulation/qsim/work/_lib.qdb): unable to open database file
+# mtilibWrite(): INTERNAL ERROR: Unexpected null object encountered
+# ** Fatal: (vcom-9) Problem while writing token file "C:/Users/benny/Desktop/ECT/4º Ano/1 Semestre/AAD/aula5/arquiteturas/examples/flipFlopD/simulation/qsim/work/_temp/vcomfifz53".
+# O sistema não conseguiu localizar o caminho especificado. (GetLastError() = 3)
+# ** Error: flipFlopD.vho(29): VHDL Compiler exiting
+# End time: 10:50:39 on Oct 17,2023, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: C:/Users/benny/Downloads/Quartus-lite-17.1.0.590-windows/modelsim_ase/win32aloem/vcom failed.
+# Executing ONERROR command at macro ./flipFlopD.do line 3

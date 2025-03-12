@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block header %}
+
+<h1>{% block title %}New Product{% endblock %}</h1>
+
+{% endblock %} {% block content %}
+<form method="post" enctype="multipart/form-data">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    
+  <label for="productname" style="margin-top: 15px;">Product Name</label>
+  <input
+    name="productname"
+    id="productname"
+    type="text"
+    value="{{ request.form['productname'] }}"
+    required
+  />
+
+  <label for="info" style="margin-top: 10px;">Info</label>
+  <textarea name="info" id="info">{{ request.form['info'] }}</textarea>
+
+  <label for="price" style="margin-top: 10px;">Price</label>
+  <input name="price" id="price" type="number" value="{{ request.form['price'] }}" required />
+
+  <label for="quantity" style="margin-top: 10px;">Quantity</label>
+  <input
+    name="quantity"
+    id="quantity"
+    type="number"
+    value="{{ request.form['quantity'] }}"
+    required
+  />
+  
+  <label for="category" style="margin-top: 10px;">Category</label>
+  <select name="category" id="category" class="select-category" required>
+    <option value="" selected disabled>Select a category</option>
+    <option value="clothing">Clothing</option>
+    <option value="electronics">Electronics</option>
+    <option value="book">Book</option>
+    <option value="office supplies">Office Supplies</option>
+    <option value="other">Other</option>
+  </select>  
+
+  <label for="img" style="margin-top: 20px;">Image</label>
+  <input type="file" name="img" id="img" accept="image/*" required>
+
+  <div class="button-container">
+    <input type="submit" class="submit-button" value="Save" />
+  </div>
+</form>
+{% endblock %}

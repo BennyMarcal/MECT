@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" onsubmit="return validateEmail();"  >
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label for="username">Username</label>
+    <input name="username" id="username" value="{{ request.form['username'] or user['username'] }}" required>
+    <label for="email">Email</label>
+    <input name="email" id="email" value="{{ request.form['email'] or user['email'] }}">
+    <label password="password">New Password</label>
+    <input name="password" type = "password" id="password" value="{{ request.form['password'] or user['password'] }}">
+    <label password="password">Confirm Password</label>
+    <input name="confirm_password" type = "password" id="confirm_password" value="{{ request.form['password'] or user['password'] }}">
+
+    <input type="submit" value="Save">
+  </form>
+  <script>
+    function validateEmail() {
+      var emailInput = document.getElementById("email");
+      var emailValue = emailInput.value;
+      var isValid = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(emailValue);
+
+      if (!isValid) {
+        alert("Please enter a valid email address (e.g., yourname@example.com).");
+        emailInput.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
+  <hr>
+    <form action="{{ url_for('userinfo.delete', id=user['id']) }}" method="post">
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+{% endblock %}

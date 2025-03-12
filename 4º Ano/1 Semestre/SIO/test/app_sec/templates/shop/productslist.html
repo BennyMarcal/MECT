@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Products{% endblock %}</h1>
+  {% if g.user %}
+  <a class="action" href="{{ url_for('shop.cart') }}">Cart</a>
+  {% endif %}
+  {% if g.user and g.user.role == 'admin' %}
+    <a class="action" href="{{ url_for('shop.add') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <body>
+    <div id="search-box">
+      <form method="post" id="search-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+        <input name="search_result" type="text" id="search-input" placeholder="Search for products" value="{{ request.form['search_result'] }}">
+        <button type="submit" id="search-button">Search</button>
+      </form>
+    </div>
+    <div id="wrap">
+      <div id="columns" class="columns_2">
+        {% for product in products %}
+          <figure>
+            <img src="{{ url_for('static', filename=product['img']) }}">
+            <h1>{{ product['productname'] }}</h1>
+            <span class="price">Price: {{ product['price'] }} €</span>
+            <div class="stock-status">
+              {% if product['quantity'] == 0 %}
+              <span style="color: red;">Out of Stock</span>
+              {% endif %}
+              {% if product['quantity'] > 0 %}
+              <span style="color: green;">In Stock</span>
+              {% endif %}
+          </div>
+            <a class="button" href="{{ url_for('shop.productinfo', name=product['productname']) }}">+Info</a>
+          </figure>          
+        {% endfor %}
+    </div>
+  </body>
+{% endblock %}

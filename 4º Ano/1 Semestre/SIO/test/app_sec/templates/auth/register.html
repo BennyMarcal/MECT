@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <div id="password-strength"></div>
+
+    <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('password')">
+      <label>
+        Show Password
+      </label>
+    </div>
+
+    <input type="submit" value="Register">
+  </form>
+  <article class="post">
+    <div class="about">
+      <p>password and username should be different </p>
+      <p>password should have at least 12 characters</p>
+    </div>  
+  </article>
+  <script src="../static/scripts.js"></script>
+{% endblock %}

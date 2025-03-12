@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <div class="showpswd">
+      <input type="checkbox" onclick="showPassword('password')">
+      <label>
+        Show Password
+      </label>
+    </div>
+
+    <input type="submit" value="Log In">
+  </form>
+
+  <!-- Add GitHub login button -->
+  <a href="{{ url_for('auth.login_with_github') }}">
+    <img src="../static/github.png" alt="GitHub Login" style="width: 24px; height: 24px;">
+    Log In with GitHub
+  </a>
+
+  <script src="../static/scripts.js"></script>
+{% endblock %}
+

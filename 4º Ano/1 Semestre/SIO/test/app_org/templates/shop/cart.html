@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Cart{% endblock %}</h1>
+  <a class="action" href="{{ url_for('shop.index') }}">Shop</a>
+  {% if g.user and total_price != 0%}
+  <a class="action" href="{{ url_for('shop.checkout') }}">Checkout</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+            
+            {% for product in cart_items %}
+            <article class="post">
+              <header>
+                <div>
+                  <h2>{{ product['productname'] }}</h2>
+                  <div class="about">
+                    Quantity: {{ product['quantity'] }}
+                    Price: {{ product['price'] }}
+                    <a class="action" href="{{ url_for('shop.productinfo', name=product['productname']) }}">Product Page</a>
+                    <a class="action" style="color:crimson" href="{{ url_for('shop.removefromcart', product_id=product['product_id']) }}">Remove</a>
+                  </div>
+                </div>  
+              </header>
+            </article>
+            {% if not loop.last %}
+            <hr />
+            {% endif %} 
+            {% endfor %}
+            <h2 style="color:gray">total: {{ total_price }}</h2>
+        
+ 
+
+{% endblock %}

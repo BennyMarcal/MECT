@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Orders{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for order in orders %}
+      <li>
+        <strong>Order ID:</strong> {{ order.id }}<br>
+        <strong>Delivery Address:</strong> {{ order.delivery_address }}<br>
+        <strong>Date Created:</strong> {{ order.date_created }}<br>
+        <!-- Add more order details here as needed -->
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

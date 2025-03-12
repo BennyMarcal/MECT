@@ -1,0 +1,15 @@
+%Aula 1
+
+%% 1.a)
+p = 0.6;
+n = 4;
+p_answer = p+(1-p)/n;
+right_answer = p_answer * 100;
+fprintf('Probabilidade de acertar a resposta é: %d%%\n', right_answer);
+
+%% 1.b)
+p = 0.7;
+n = 5;
+know_answer = (p*n) / ( 1 + (n-1)*p );
+know_answer = p_know * 100;
+fprintf('The probability of the student to known the answer when selects the right answer is: %.1f%%\n', know_answer);

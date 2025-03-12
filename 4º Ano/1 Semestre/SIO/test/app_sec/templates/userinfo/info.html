@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}User Profile{% endblock %}</h1>
+  <a class="action" href="{{ url_for('userinfo.orders') }}">Orders</a>
+  <a class="action" href="{{ url_for('userinfo.update') }}">Update Info</a>
+{% endblock %}
+
+{% block content %}
+  <ul>
+    <li><strong>Username:</strong> {{ user_info['username'] }}</li>
+    {% if user_info.get('email') %}
+      <li><strong>Email:</strong> {{ user_info['email'] }}</li>
+    {% endif %}
+    {% if user_info.get('github_username') %}
+      <li><strong>GitHub Username:</strong> {{ user_info['github_username'] }}</li>
+    {% endif %}
+    <!-- Add more user information fields here -->
+  </ul>
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}User Profile{% endblock %}</h1>
+  <a class="action" href="{{ url_for('userinfo.orders') }}">Orders</a>
+  <a class="action" href="{{ url_for('userinfo.update') }}">Update Info</a>
+{% endblock %}
+
+{% block content %}
+  <ul>
+    <li><strong>Username:</strong> {{ request.form['username'] or user['username'] }}</li>
+    <li><strong>Email:</strong> {{ request.form['email'] or user['email'] }}</li>
+    <!-- Add more user information fields here -->
+  </ul>
+{% endblock %}
+

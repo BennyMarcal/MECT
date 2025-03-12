@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Station</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+  }
+  canvas {
+    max-width: 100%;
+  }
+</style>
+</head>
+<body>
+<h1>Weather Station</h1>
+<div style="text-align: center;">
+  <canvas id="chart" style="max-width: 600px;"></canvas>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+  var ctx = document.getElementById('chart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        {
+          label: 'Temperature (°C)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          data: [],
+          fill: false
+        },
+        {
+          label: 'Humidity (%)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          data: [],
+          fill: false
+        },
+        {
+          label: 'Pressure (hPa)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          data: [],
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          mode: 'index',
+          intersect: false
+        }
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: 'second'
+          }
+        },
+        y: {
+          beginAtZero: false
+        }
+      }
+    }
+  });
+
+  var ws = new WebSocket('ws://' + window.location.hostname + ':81');
+  ws.onmessage = function(event) {
+    var data = JSON.parse(event.data);
+    chart.data.labels.push(new Date().toLocaleTimeString());
+    if (chart.data.labels.length > 20) {
+      chart.data.labels.shift();
+    }
+    chart.data.datasets[0].data.push(data.temperature);
+    chart.data.datasets[1].data.push(data.humidity);
+    chart.data.datasets[2].data.push(data.pressure);
+    if (chart.data.datasets[0].data.length > 20) {
+      chart.data.datasets[0].data.shift();
+      chart.data.datasets[1].data.shift();
+      chart.data.datasets[2].data.shift();
+    }
+    chart.update();
+  };
+</script>
+</body>
+</html>

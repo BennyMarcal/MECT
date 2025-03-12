@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Product Info{% endblock %}</h1>
+<a class="action" href="{{ url_for('shop.index') }}">Shop</a>
+{% if g.user %}
+<a class="action" href="{{ url_for('shop.cart') }}">Cart</a>
+{% endif %}
+{% endblock %} {% block content %}
+
+<div class="product-info">
+  <img src="{{ url_for('static', filename=product['img']) }}" class="product-info">
+</div>
+
+<ul>
+  <li>
+    <strong>Product Name:</strong> {{ request.form['productname'] or
+    product['productname'] }}
+  </li>
+  <li>
+    <strong>Price:</strong> {{ request.form['price'] or product['price'] }}
+  </li>
+  <li>
+    <strong>Quantity available:</strong> {{ request.form['quantity'] or
+    product['quantity'] }}
+  </li>
+  <li>
+    <strong>Category:</strong> {{ request.form['category'] or
+    product['category'] }}
+  </li>
+  <li><strong>Info:</strong> {{ request.form['info'] or product['info'] }}</li>
+
+  <li><strong>Rating:</strong> {{ avg_rating }}</li>
+
+  
+  <li>
+    <strong>Reviews:</strong>
+    
+    {% for review in reviews %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ review['title'] }}</h1>
+          <div class="about">
+            by {{ review['author_username'] }} on {{
+              review['created'].strftime('%Y-%m-%d') }}
+            </div>
+          </div>
+        </header>
+        <p class="body">{{ review['review'] | safe}}</p>
+        <p>{{ review['rating']}} stars</p>
+      </article>
+      {% if not loop.last %}
+      <hr />
+      {% endif %} {% endfor %}
+    </li>
+  </ul>
+  
+  <hr>
+
+  {% if g.user %}
+  <form method="post" action={{ url_for('shop.addtocart') }}>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label for="quantity">Quantity to order:</label>
+    <input type="hidden" name="product_id" value="{{ product['id'] }}">
+    <input type="hidden" name="product_name" value="{{ product['productname'] }}">
+    <input type="number" id="quantity" name="quantity" min="1" max="{{ product['quantity'] }}" value="1">
+    <input type="submit" value="Add to cart">
+  </form>
+  <!--<a class="action" href="{{ url_for('shop.index') }}">Add to cart</a>-->
+  <a class="action" href="{{ url_for('shop.createreview', id=product['id']) }}">review Item</a
+  >
+  {% endif %}
+
+  {% endblock %}
+  
